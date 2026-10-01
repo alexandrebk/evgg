@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f1021">
+  <meta name="robots" content="noindex, nofollow">
+  <title>EVG — On prépare la surprise 🎉</title>
+  <style>
+    :root {
+      --bg: #0f1021;
+      --bg-soft: #181a35;
+      --card: #1f2142;
+      --card-2: #262a52;
+      --text: #f3f4ff;
+      --muted: #a4a8cf;
+      --accent: #ffd166;
+      --accent-2: #ff6b9d;
+      --green: #4ade80;
+      --radius: 18px;
+      --gap: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 60px;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 56px 16px 40px;
+      background:
+        radial-gradient(120% 120% at 50% 0%, rgba(255,107,157,.25), transparent 55%),
+        radial-gradient(120% 120% at 50% 100%, rgba(255,209,102,.18), transparent 55%),
+        var(--bg-soft);
+      overflow: hidden;
+    }
+    .hero .badge {
+      display: inline-block;
+      font-size: 13px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(255,209,102,.4);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+    .hero h1 .emoji { display: block; font-size: 44px; margin-bottom: 8px; }
+    .hero p {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    /* ---------- Nav ---------- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(15,16,33,.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    nav .wrap {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 10px 16px;
+      scrollbar-width: none;
+    }
+    nav .wrap::-webkit-scrollbar { display: none; }
+    nav a {
+      flex: 0 0 auto;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--card);
+      white-space: nowrap;
+      transition: color .15s, background .15s;
+    }
+    nav a:active { background: var(--card-2); color: var(--text); }
+
+    /* ---------- Sections ---------- */
+    section { padding: 36px 0 8px; }
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .section-head .ico { font-size: 26px; }
+    .section-head h2 {
+      font-size: 22px;
+      letter-spacing: -0.3px;
+    }
+    .section-head .tag {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .tag.wip { color: #0f1021; background: var(--accent); }
+    .tag.vote { color: var(--muted); background: var(--card); }
+
+    .lead { color: var(--muted); font-size: 15px; margin-bottom: 18px; }
+
+    /* ---------- Poll cards ---------- */
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .card.lead-option {
+      border-color: rgba(74,222,128,.45);
+      box-shadow: 0 0 0 1px rgba(74,222,128,.25) inset;
+    }
+    .opt-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .opt-name { font-size: 17px; font-weight: 600; }
+    .opt-name .star { color: var(--green); font-size: 13px; margin-left: 6px; font-weight: 700; }
+    .opt-votes {
+      flex: 0 0 auto;
+      font-size: 14px;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .opt-votes b { color: var(--text); font-size: 16px; }
+    .bar {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+    .bar > span {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--green), #22c55e);
+    }
+
+    /* ---------- Participants ---------- */
+    .people {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .person {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .person .av {
+      flex: 0 0 auto;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 15px;
+      color: #0f1021;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    }
+    .person .nm { font-size: 15px; font-weight: 600; }
+    .person.groom {
+      grid-column: 1 / -1;
+      border-color: rgba(255,209,102,.5);
+      background: linear-gradient(135deg, rgba(255,209,102,.14), rgba(255,107,157,.12));
+    }
+    .person.groom .av { background: linear-gradient(135deg, #fff, var(--accent)); }
+    .person.groom .nm small { display: block; color: var(--muted); font-weight: 500; font-size: 12px; }
+
+    /* ---------- WIP ---------- */
+    .wip-box {
+      background: repeating-linear-gradient(
+        45deg,
+        var(--card),
+        var(--card) 14px,
+        var(--card-2) 14px,
+        var(--card-2) 28px
+      );
+      border: 1px dashed rgba(255,209,102,.5);
+      border-radius: var(--radius);
+      padding: 32px 20px;
+      text-align: center;
+    }
+    .wip-box .big { font-size: 40px; margin-bottom: 10px; }
+    .wip-box h3 { font-size: 18px; margin-bottom: 8px; }
+    .wip-box p { color: var(--muted); font-size: 14px; max-width: 360px; margin: 0 auto; }
+
+    /* ---------- Footer note ---------- */
+    .note {
+      margin-top: 28px;
+      background: var(--bg-soft);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius);
+      padding: 16px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .note b { color: var(--text); }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 32px 16px 0;
+    }
+
+    /* ---------- Desktop ---------- */
+    @media (min-width: 560px) {
+      .hero h1 { font-size: 42px; }
+      .people { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <span class="badge">Mission secrète 🤫</span>
+    <h1>
+      <span class="emoji">🎉🍻</span>
+      EVG du marié
+    </h1>
+    <p>Toutes les infos au même endroit pour organiser la surprise. Dates, destination, équipe&nbsp;… et bientôt le programme&nbsp;!</p>
+  </header>
+
+  <nav>
+    <div class="wrap">
+      <a href="#dates">📅 Dates</a>
+      <a href="#lieux">📍 Destination</a>
+      <a href="#hebergement">🏨 Hébergement</a>
+      <a href="#participants">👥 Équipe</a>
+      <a href="#programme">🗓️ Programme</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+
+    <!-- DATES -->
+    <section id="dates">
+      <div class="section-head">
+        <span class="ico">📅</span>
+        <h2>Dates proposées</h2>
+        <span class="tag vote">Sondage</span>
+      </div>
+      <p class="lead">Les créneaux sur la table (vacances scolaires). Deux favoris se dégagent&nbsp;!</p>
+
+      <div class="card">
+        <div class="opt-top">
+          <span class="opt-name">19 – 21 mars</span>
+          <span class="opt-votes"><b>2</b> votes</span>
+        </div>
+        <div class="bar"><span style="width:50%"></span></div>
+      </div>
+
+      <div class="card lead-option">
+        <div class="opt-top">
+          <span class="opt-name">30 avril – 2 mai <span class="star">★ favori</span></span>
+          <span class="opt-votes"><b>4</b> votes</span>
+        </div>
+        <div class="bar"><span style="width:100%"></span></div>
+      </div>
+
+      <div class="card lead-option">
+        <div class="opt-top">
+          <span class="opt-name">11 – 13 juin <span class="star">★ favori</span></span>
+          <span class="opt-votes"><b>4</b> votes</span>
+        </div>
+        <div class="bar"><span style="width:100%"></span></div>
+      </div>
+    </section>
+
+    <!-- LIEUX -->
+    <section id="lieux">
+      <div class="section-head">
+        <span class="ico">📍</span>
+        <h2>Destination proposée</h2>
+        <span class="tag vote">Sondage</span>
+      </div>
+      <p class="lead">Où est-ce qu'on part&nbsp;? Londres mène la danse pour l'instant.</p>
+
+      <div class="card lead-option">
+        <div class="opt-top">
+          <span class="opt-name">🇬🇧 Londres <span class="star">★ en tête</span></span>
+          <span class="opt-votes"><b>5</b> votes</span>
+        </div>
+        <div class="bar"><span style="width:100%"></span></div>
+      </div>
+
+      <div class="card">
+        <div class="opt-top">
+          <span class="opt-name">🇳🇱 Amsterdam</span>
+          <span class="opt-votes"><b>2</b> votes</span>
+        </div>
+        <div class="bar"><span style="width:40%"></span></div>
+      </div>
+
+      <div class="card">
+        <div class="opt-top">
+          <span class="opt-name">🥐 Bayonne</span>
+          <span class="opt-votes"><b>0</b> vote</span>
+        </div>
+        <div class="bar"><span style="width:0%"></span></div>
+      </div>
+
+      <div class="card">
+        <div class="opt-top">
+          <span class="opt-name">🌹 Toulouse</span>
+          <span class="opt-votes"><b>0</b> vote</span>
+        </div>
+        <div class="bar"><span style="width:0%"></span></div>
+      </div>
+    </section>
+
+    <!-- HEBERGEMENT -->
+    <section id="hebergement">
+      <div class="section-head">
+        <span class="ico">🏨</span>
+        <h2>Hébergement</h2>
+        <span class="tag wip">WIP</span>
+      </div>
+
+      <div class="wip-box">
+        <div class="big">🏨</div>
+        <h3>Des hôtels à venir…</h3>
+        <p>On proposera une sélection d'hôtels une fois la destination verrouillée. Reste à l'affût&nbsp;!</p>
+      </div>
+    </section>
+
+    <!-- PARTICIPANTS -->
+    <section id="participants">
+      <div class="section-head">
+        <span class="ico">👥</span>
+        <h2>L'équipe</h2>
+      </div>
+      <p class="lead">La fine équipe pour célébrer ça comme il se doit.</p>
+
+      <div class="people">
+        <div class="person groom">
+          <span class="av">🤵</span>
+          <span class="nm">Le marié <small>La star du week-end 🎩</small></span>
+        </div>
+        <div class="person"><span class="av">A</span><span class="nm">Alex</span></div>
+        <div class="person"><span class="av">O</span><span class="nm">Olivier</span></div>
+        <div class="person"><span class="av">S</span><span class="nm">Samy</span></div>
+        <div class="person"><span class="av">S</span><span class="nm">Sofiane</span></div>
+        <div class="person"><span class="av">W</span><span class="nm">William</span></div>
+        <div class="person"><span class="av">E</span><span class="nm">Emmanuel</span></div>
+        <div class="person"><span class="av">AJ</span><span class="nm">Alexandre Jean</span></div>
+      </div>
+    </section>
+
+    <!-- PROGRAMME -->
+    <section id="programme">
+      <div class="section-head">
+        <span class="ico">🗓️</span>
+        <h2>Programme</h2>
+        <span class="tag wip">WIP</span>
+      </div>
+
+      <div class="wip-box">
+        <div class="big">🚧</div>
+        <h3>En cours de préparation…</h3>
+        <p>Le planning détaillé du week-end arrive bientôt. On attend de verrouiller la date et la destination&nbsp;!</p>
+      </div>
+    </section>
+
+    <div class="note">
+      💡 <b>Pour la femme du marié&nbsp;:</b> ce site centralise ce qu'on a prévu. N'hésite pas à nous dire ce qui colle le mieux côté dates/destination, et si tu as des idées pour le programme surprise&nbsp;!
+    </div>
+
+    <footer>
+      Fait avec 🍻 pour un EVG mémorable · Chut, c'est une surprise 🤫
+    </footer>
+
+  </main>
+
+</body>
+</html>
