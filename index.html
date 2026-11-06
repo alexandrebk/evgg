@@ -133,6 +133,7 @@
     }
     .tag.wip { color: #0f1021; background: var(--accent); }
     .tag.vote { color: var(--muted); background: var(--card); }
+    .tag.done { color: #0f1021; background: var(--green); }
 
     .lead { color: var(--muted); font-size: 15px; margin-bottom: 18px; }
 
@@ -153,29 +154,9 @@
       align-items: baseline;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 10px;
     }
     .opt-name { font-size: 17px; font-weight: 600; }
     .opt-name .star { color: var(--green); font-size: 13px; margin-left: 6px; font-weight: 700; }
-    .opt-votes {
-      flex: 0 0 auto;
-      font-size: 14px;
-      color: var(--muted);
-      font-variant-numeric: tabular-nums;
-    }
-    .opt-votes b { color: var(--text); font-size: 16px; }
-    .bar {
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.08);
-      overflow: hidden;
-    }
-    .bar > span {
-      display: block;
-      height: 100%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--green), #22c55e);
-    }
 
     /* ---------- Participants ---------- */
     .people {
@@ -285,30 +266,30 @@
         <h2>Dates proposées</h2>
         <span class="tag vote">Sondage</span>
       </div>
-      <p class="lead">Les créneaux sur la table (vacances scolaires). Deux favoris se dégagent&nbsp;!</p>
+      <p class="lead">Les créneaux sur la table&nbsp;: tous les week-ends de mars.</p>
+
+      <div class="card">
+        <div class="opt-top">
+          <span class="opt-name">5 – 7 mars</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="opt-top">
+          <span class="opt-name">12 – 14 mars</span>
+        </div>
+      </div>
 
       <div class="card">
         <div class="opt-top">
           <span class="opt-name">19 – 21 mars</span>
-          <span class="opt-votes"><b>2</b> votes</span>
         </div>
-        <div class="bar"><span style="width:50%"></span></div>
       </div>
 
-      <div class="card lead-option">
+      <div class="card">
         <div class="opt-top">
-          <span class="opt-name">30 avril – 2 mai <span class="star">★ favori</span></span>
-          <span class="opt-votes"><b>4</b> votes</span>
+          <span class="opt-name">26 – 28 mars</span>
         </div>
-        <div class="bar"><span style="width:100%"></span></div>
-      </div>
-
-      <div class="card lead-option">
-        <div class="opt-top">
-          <span class="opt-name">11 – 13 juin <span class="star">★ favori</span></span>
-          <span class="opt-votes"><b>4</b> votes</span>
-        </div>
-        <div class="bar"><span style="width:100%"></span></div>
       </div>
     </section>
 
@@ -316,41 +297,15 @@
     <section id="lieux">
       <div class="section-head">
         <span class="ico">📍</span>
-        <h2>Destination proposée</h2>
-        <span class="tag vote">Sondage</span>
+        <h2>Destination</h2>
+        <span class="tag done">Validé</span>
       </div>
-      <p class="lead">Où est-ce qu'on part&nbsp;? Londres mène la danse pour l'instant.</p>
+      <p class="lead">C'est décidé, cap sur Tours&nbsp;!</p>
 
       <div class="card lead-option">
         <div class="opt-top">
-          <span class="opt-name">🇬🇧 Londres <span class="star">★ en tête</span></span>
-          <span class="opt-votes"><b>5</b> votes</span>
+          <span class="opt-name">🏰 Tours <span class="star">★ validé</span></span>
         </div>
-        <div class="bar"><span style="width:100%"></span></div>
-      </div>
-
-      <div class="card">
-        <div class="opt-top">
-          <span class="opt-name">🇳🇱 Amsterdam</span>
-          <span class="opt-votes"><b>2</b> votes</span>
-        </div>
-        <div class="bar"><span style="width:40%"></span></div>
-      </div>
-
-      <div class="card">
-        <div class="opt-top">
-          <span class="opt-name">🥐 Bayonne</span>
-          <span class="opt-votes"><b>0</b> vote</span>
-        </div>
-        <div class="bar"><span style="width:0%"></span></div>
-      </div>
-
-      <div class="card">
-        <div class="opt-top">
-          <span class="opt-name">🌹 Toulouse</span>
-          <span class="opt-votes"><b>0</b> vote</span>
-        </div>
-        <div class="bar"><span style="width:0%"></span></div>
       </div>
     </section>
 
@@ -365,7 +320,7 @@
       <div class="wip-box">
         <div class="big">🏨</div>
         <h3>Des hôtels à venir…</h3>
-        <p>On proposera une sélection d'hôtels une fois la destination verrouillée. Reste à l'affût&nbsp;!</p>
+        <p>On proposera une sélection d'hôtels à Tours une fois la date verrouillée. Reste à l'affût&nbsp;!</p>
       </div>
     </section>
 
@@ -390,6 +345,7 @@
         <div class="person"><span class="av">E</span><span class="nm">Emmanuel</span></div>
         <div class="person"><span class="av">A</span><span class="nm">Alexandre</span></div>
         <div class="person"><span class="av">J</span><span class="nm">Jean</span></div>
+        <div class="person"><span class="av">M</span><span class="nm">Martin</span></div>
       </div>
     </section>
 
@@ -404,7 +360,7 @@
       <div class="wip-box">
         <div class="big">🚧</div>
         <h3>En cours de préparation…</h3>
-        <p>Le planning détaillé du week-end arrive bientôt. On attend de verrouiller la date et la destination&nbsp;!</p>
+        <p>Le planning détaillé du week-end arrive bientôt. On attend de verrouiller la date&nbsp;!</p>
       </div>
     </section>
 
